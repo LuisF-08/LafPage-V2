@@ -1,10 +1,13 @@
-from pydantic import BaseModel
-
+from pydantic import BaseModel, EmailStr
 
 class emailSolicitacao(BaseModel):
-    email : str
+    email: EmailStr
 
 
 class ValidarEmail(BaseModel):
-    email: str
+    email: EmailStr
     codigo: str
+
+
+class ValidarCNPJ(BaseModel):
+    cnpj: str
