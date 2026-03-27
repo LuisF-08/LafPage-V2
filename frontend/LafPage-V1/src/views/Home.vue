@@ -36,8 +36,12 @@ import Institucional from '../components/Institucional.vue';
     <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping -z-50"></span>
     </a>
 
-    <Institucional />
+    <!-- templates  responsável por todas essa parte visual
+     indo do institucional -> promoções -> conversar com televendas -> localização e estatistica e
+     os pareceiros escolhidos -->
 
+    <Institucional />
+    
     <Carrosel />
 
     <TelaTelevendas />

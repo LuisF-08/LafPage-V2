@@ -1,37 +1,85 @@
-<template>
+<template >
+  <div
+    class="fixed inset-0 -z-10"
+    :style="{ backgroundImage: `url(${bg})` }"
+  >
+    <div class="absolute inset-0 bg-cover bg-center blur-xl scale-110"></div>
+  </div>
 
-<div class="w-full h-10"></div>
-  <section class="pt-16 w-full px-[10px] py-20 md:py-24 ">
-    <div class="flex flex-col items-center gap-10">
-       <h1 class="text-center text-10xl md:text-12xl lg:text-12xl
-       bg-gradient-to-r from-white via-indigo-500 to-sky-400
-       bg-clip-text text-transparent
-       tracking-wide
-       px-12 py-10
-       bg-white/20 backdrop-blur-xl
-       border border-white/30
-       rounded-3xl
-       shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
-         <i class="fa-solid fa-book-open-reader"></i>
-         Nosso Catálogo
-       </h1>
-       
-    </div>
-    <div class="relative  w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center">
-        <div class="relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 
-        shadow-2xl max-w-[750px] p-10 md:p-16 rounded-[40px] text-center mx-4">
-          <h2 class="text-xl md:text-3xl text-gray-100 leading-relaxed italic">
-            Com mais de 20 parceiros em toda  <span class="text-blue-400 ">Bahia
-            </span><i class="fa-solid fa-exclamation"></i>, na 
-            <span class="font-bold text-blue-400">LAFMED</span> 
-            somamos experiência e excelência no fornecimento de moléculas ao mercado farmacêutico.
-            Além disso, contamos com Genéricos ,Similares , produtos de Higiene Pessoal e Beleza 
-            ,Vitaminas e Suplementos e muito mais,
-             <span class="font-bold text-blue-400"><i class="fa-solid fa-pills"></i></span>
-             Baixe nosso catálogo e descubra todos os nossos produtos e fornecedores.
-          </h2>
-        </div>
-    </div>
-    </section>
+  <!-- OVERLAY VIDRO -->
+  <div class="fixed inset-0 -z-10 bg-black/30 backdrop-blur-md"></div>
 
+  <!-- CONTEÚDO -->
+  <div class="flex flex-col gap-20 pb-20 w-full overflow-x-hidden">
+
+   <!--BOTÂO FIXO DO WHATSAPP-->
+   <a href="https://wa.me/558005910367"
+   target="_blank"
+   class="fixed bottom-8 right-8 bg-green-500 text-white
+    w-20 h-20 flex items-center justify-center rounded-full
+   shadow-[0_10px_25px_rgba(34,197,94,0.4)] hover:bg-green-600 hover:scale-110
+    transition-all duration-300 group z-[9999]"
+   title="Fale com a gente!">
+    <i class="fa-brands fa-whatsapp text-5xl"></i>
+    <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping -z-50"></span>
+    </a>
+  </div>
+  <div>
+   <h1>LISTA SAC RESPOSTAS</h1>
+  
+   <table>
+    <thead>
+      <tr>
+        <th>NOME</th>
+        <th>EMAIL</th>
+        <th>PEDIDO</th>
+        <th>PROBLEMA</th>
+        <th>SITUAÇÃO</th>
+        <th>RESPOSTA</th>
+        <TH>STATUS</TH>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr v-for="item in sacList" :key="item.pedido">
+        <td>{{ item.nome }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.pedido }}</td>
+        <td>{{ item.problema }}</td>
+        <td>{{ item.situacao }}</td>
+        <td>{{ item.resposta }}</td>
+        <td>{{ item.status }}</td>
+      </tr>
+    </tbody>
+
+   </table>
+  
+  
+  </div>
 </template>
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      sacList: []
+    };
+  },
+
+  mounted() {
+    this.buscarDados();
+  },
+
+  methods: {
+    async buscarDados() {
+      try {
+        const resp = await axios.get("http://localhost:8000/sac");
+        this.sacList = resp.data;
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    }
+  }
+};
+</script>

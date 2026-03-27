@@ -1,4 +1,8 @@
 <template>
+  
+  <!-- template de apresentação da equipe um pouco da história e 
+   trajetória da LAFMED -->
+
   <div class="w-full h-10"></div>
   <section class="pt-16 w-full px-[10px] py-20 md:py-24 ">
   <div class="flex flex-col items-center gap-10">

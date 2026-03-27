@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
+/*usado de forma a deixar algumas configurações como global ou 
+css global como chamam*/
+
 * {
+  /*inicilaiza a página evitando estilos sobrepostos da página pelo nafvegdor
+  faazendo u8m grande reset de estlos*/
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
+  /*evitan que os conteudos vazem para o eixo x da página*/
   overflow-x: hidden;
 }
 
+/* define a fonte poppins como padrão da página*/
 body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* Padrão de todos os items feitos*/
 :root {
   font-family: system-ui, 'Poppins', sans-serif;
   font-weight: 400;
@@ -29,6 +37,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* deixa página com alguns estilos pre-configurados de elementos  */
 a {
   font-weight: 500;
   color: #ffffff;
@@ -50,7 +59,7 @@ h1 {
   padding: 2em;
 }
 
-/* MOBILE */
+/* MOBILE -> feito para que haja um correto redimensionamento */
 @media (max-width: 968px) {
   :root {
     background-color: #ffffff;

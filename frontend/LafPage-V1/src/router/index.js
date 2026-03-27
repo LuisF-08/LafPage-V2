@@ -8,6 +8,9 @@ import NossosParceiros from '../views/NossosParceiros.vue'
 import QuemSomos from '../views/QuemSomos.vue'
 
 
+// Rotas cadastradas no site e seus respectivos fins posto pelo 
+// nome + o caminho que serão usados para seu roteamento
+
 const routes = [
   { 
     path: '/',
@@ -35,6 +38,7 @@ const routes = [
   }
 ]
 
+// cria as rotas e a permite serem exportadas para outros elementos 
 const router = createRouter({
   history: createWebHistory(),
   routes

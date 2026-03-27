@@ -1,8 +1,10 @@
 <template>
   <section class="w-full h-auto md:h-[600px] flex flex-col md:flex-row overflow-hidden">
-
+     <!-- tela do carrosel de textos e do mapa das localizações -->
     <div class="relative w-full md:w-1/2 flex items-center justify-center p-6">
       <div id="carousel-section" class="w-full h-full flex items-center justify-center">
+        <!-- Usei o v-if pois cada slide virou un elemento , ent~çao ao passar ele atualiza
+         o indice e muda o indice automaicamente -->
         <Carousel3d
           v-if="slides.length"
           :clickable="true"
@@ -14,6 +16,9 @@
           :perspective="35"
         >
           <Slide v-for="(slide, i) in slides" :key="i" :index="i">
+            <!-- atravez do indice que é contado pela quantidade de plaquinhas
+             o indice cresce indefinidamente  e usa-se efeitos de blur e para fazer
+             parecer com um vidro e usa-se o z-index para fazer ficar à frente de tudo-->
             <div class="w-full h-full bg-white/50  backdrop-blur-md 
               flex items-center justify-center ring-2 rounded-xl shadow-2xl 
               border relative z-10">
@@ -26,6 +31,8 @@
       </div>
     </div>
     
+    <!-- Responsável por exibir as localizações de onde a 
+     empre LAFMED entrega-->
     <div class="w-full md:w-1/2 flex flex-col items-center justify-center p-8 gap-10">
      <h2
        class="text-center text-4xl md:text-6xl  leading-relaxed
@@ -54,7 +61,9 @@
 <div class="w-full py-16 flex justify-center">
   
   <ul class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-44">
-
+    <!-- função de flutuar feita para adicionjar estilo e 
+     uso de scale para aumentar tamanho, letra e mudança de cor ao passar o mouse
+     com bg-gradient para mudar a cor de background -->
     <li class="flex justify-center flutuar">
       <div class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-blue-400
        to-blue-600 text-white flex flex-col items-center justify-center
@@ -65,7 +74,7 @@
         <span class="text-lg font-medium mt-1 uppercase tracking-wide">SKU</span>
       </div>
     </li>
-
+    <!-- uso da function atraso para fazer flutuarem em tempos diferentes -->
     <li class="flex justify-center flutuar atraso-1">
       <div class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-blue-400
        to-blue-600 text-white flex flex-col items-center justify-center text-center
@@ -125,7 +134,7 @@ const slides = [
 }
 
 
-/*animação nde flutuar*/
+/*animação nde flutuar para desktop e para o mobile*/
 @keyframes flutuar {
   0%, 100% { 
     transform: translateY(0); 

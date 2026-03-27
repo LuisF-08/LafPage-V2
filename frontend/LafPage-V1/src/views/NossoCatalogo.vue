@@ -3,6 +3,8 @@ import Catalogos from '../components/Catalogo.vue';
 import bg from '../assets/capa-site-lafmed.png'
 import TodosCatalogos from '../components/TodosCatalogos.vue';
 
+// página inteira dedicada à parte de catálogos que de produtos 
+
 </script>
 <template>
    <div
@@ -31,6 +33,7 @@ import TodosCatalogos from '../components/TodosCatalogos.vue';
     </a>
   </div>
 
+  <!-- template dos catálogos -->
   <Catalogos />
    
   <TodosCatalogos />

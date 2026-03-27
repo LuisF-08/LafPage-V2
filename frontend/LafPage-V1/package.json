@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.13.6",
     "vue": "^3.5.25",
     "vue-router": "^4.6.4",
     "vue3-carousel-3d": "^1.0.4"
