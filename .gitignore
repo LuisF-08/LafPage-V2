@@ -7,9 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-
+venv
+env
 .venv
-
+create.sql
 
 node_modules
 dist

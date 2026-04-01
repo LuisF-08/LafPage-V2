@@ -40,11 +40,6 @@
       bg-clip-text text-transparent
       tracking-wide
       px-12 py-6
-      bg-white/30 backdrop-blur-xl
-      border border-white/30
-      rounded-3xl
-      shadow-[0_10px_40px_rgba(0,0,0,0.25)]
-      px-12 py-6
      "
              >
        Onde entregamos

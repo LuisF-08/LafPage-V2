@@ -18,7 +18,10 @@ ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"]
 
 
 
-async def processar_formulario_sac(dados, arquivo, db, background_tasks: BackgroundTasks):
+async def processar_formulario_sac(dados, 
+                                arquivo,
+                                db,
+                                background_tasks: BackgroundTasks):
     
     # Converter JSON
     try:
@@ -57,8 +60,6 @@ async def processar_formulario_sac(dados, arquivo, db, background_tasks: Backgro
                     raise HTTPException(status_code=400, detail="Arquivo muito grande")
                 f.write(chunk)
 
-    # Cria uma arrya onde será usado como valor de preenchimento
-    # rm a variável itens
     itens_para_banco = []
 
     for item in dados["itens"]:

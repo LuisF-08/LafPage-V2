@@ -67,3 +67,38 @@ CREATE TABLE public.sac_itens (
 	CONSTRAINT sac_itens_pkey PRIMARY KEY (id),
 	CONSTRAINT fk_formulario FOREIGN KEY (formulario_id) REFERENCES public.sac_formulario(id) ON DELETE CASCADE
 );
+
+-- public.tabela_nfe definição
+
+-- Drop table
+
+-- DROP TABLE public.tabela_nfe;
+
+CREATE TABLE public.tabela_nfe (
+	id serial4 NOT NULL,
+	cnpj varchar(14) NOT NULL,
+	nfe text NOT NULL,
+	"xml" text NULL,
+	valor numeric(20, 2) NULL,
+	criado_em timestamp DEFAULT now() NULL,
+	numero_pedido int4 NULL,
+	CONSTRAINT tabela_nfe_pkey PRIMARY KEY (id)
+);
+
+-- public.tabela_boletos definição
+
+-- Drop table
+
+-- DROP TABLE public.tabela_boletos;
+
+CREATE TABLE public.tabela_boletos (
+	id serial4 NOT NULL,
+	cnpj varchar(14) NOT NULL,
+	codigo_de_barras varchar(44) NOT NULL,
+	parcelas int4 DEFAULT 1 NULL,
+	valor_total numeric(20, 2) NOT NULL,
+	vencimento date NULL,
+	criado_em timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT tabela_boletos_codigo_de_barras_key UNIQUE (codigo_de_barras),
+	CONSTRAINT tabela_boletos_pkey PRIMARY KEY (id)
+);

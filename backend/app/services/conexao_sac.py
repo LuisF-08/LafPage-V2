@@ -8,69 +8,48 @@ HOST = os.getenv("DB_HOST")
 BANCO = os.getenv("DB_DATABASE")
 USUARIO= os.getenv("DB_USER")
 SENHA = os.getenv("DB_PASSWORD")
+PORTA = os.getenv("DB_PORT", "5432")
+
 
 def get_conexao_banco():
     return psycopg2.connect(host=HOST,
                             database=BANCO,
                             user=USUARIO,
-                            password=SENHA)
+                            password=SENHA,
+                            port=PORTA)
 
-def listar_sac():
-    conn = get_conexao_banco()  
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        SELECT 
-            c.nome,
-            c.email,
-            p.numero_pedido,
-            s.descricao_problema,
-            s.situacao,
-            d.resposta,
-            d.status
-        FROM sac s
-        JOIN pedidos p ON s.pedido_id = p.id
-        JOIN clientes c ON p.id_cliente = c.id
-        LEFT JOIN devolucao_sac d ON d.solicitacao_id = s.id;
-    """)
-
-    dados = cursor.fetchall()
-
-    resultado = []
-    for row in dados:
-        resultado.append({
-            "nome": row[0],
-            "email": row[1],
-            "pedido": row[2],
-            "problema": row[3],
-            "situacao": row[4],
-            "resposta": row[5] or "",
-            "status": row[6] or "",
-        })
-
-    cursor.close()
-    conn.close()
-    
-    return resultado
 
 def validar_cnpj_banco(cnpj):
     conexao = get_conexao_banco()
-    cursor = conexao.cursor()
-    
-    cursor.execute(""" 
-    SELECT cnpj FROM clientes
-    WHERE cnpj = %s               
-    """, (cnpj,))
-    
-    resultado = cursor.fetchone()
-    
-    cursor.close()
-    conexao.close()
-    
-    if resultado :
-        return {"existe": True , "cnpj": resultado[0] }
-    else:
-        return { "existe": True , "mensagem": f"O {cnpj} procurado não foi encontrado" }
+    try:
+        cursor = conexao.cursor()
+        
+        # DEBUG
+        cursor.execute("SELECT current_database(), inet_server_port();")
+        db_info = cursor.fetchone()
+        print(f"\n--- DEBUG CONEXÃO ---")
+        print(f"Banco: {db_info[0]} | Porta: {db_info[1]}")
+        
+        cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
+        tabelas = [t[0] for t in cursor.fetchall()]
+        print(f"Tabelas que o Python enxerga: {tabelas}")
+        print(f"----------------------\n")
+        
+        # Execução da query principal
+        cursor.execute("SELECT cnpj FROM clientes WHERE cnpj = %s", (cnpj,))
+        resultado = cursor.fetchone()
+        
+        if resultado:
+            return {"existe": True, "cnpj": resultado[0]}
+        else:
+            return {"existe": False, "mensagem": f"O {cnpj} não foi encontrado"}
+            
+    except Exception as e:
+        print(f"ERRO NA CONSULTA: {e}")
+        raise e
+    finally:
+        cursor.close()
+        conexao.close()
     
 def validar_nota_fiscal_banco(nota_fiscal):
     conexao = get_conexao_banco()

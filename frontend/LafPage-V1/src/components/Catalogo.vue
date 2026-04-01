@@ -9,11 +9,7 @@
         bg-gradient-to-r from-white via-indigo-500 to-sky-400
         bg-clip-text text-transparent
         tracking-wide
-        px-8 py-10
-        bg-white/10 backdrop-blur-xl
-        border border-white/30
-        rounded-[40px]
-        shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+        px-8 py-10">
         <i class="fa-solid fa-book-open-reader"></i>
         Nosso Catálogo
       </h1>

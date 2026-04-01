@@ -226,8 +226,8 @@
              class="w-full py-5 rounded-2xl transition-all duration-300 shadow-xl
              flex items-center justify-center gap-3 text-white"
              :class="enviado 
-               ? 'bg-green-600 shadow-green-900/20' 
-               : 'bg-gradient-to-r from-blue-600 to-sky-500 hover:from-sky-400 hover:to-indigo-500 shadow-blue-900/20'
+              ? 'bg-green-600 shadow-green-900/20' 
+              : 'bg-gradient-to-r from-blue-600 to-sky-500 hover:from-sky-400 hover:to-indigo-500 shadow-blue-900/20 animate-pulse'"
             ">
             <i v-if="!enviado" class="fa-solid fa-paper-plane"></i>
             <i v-else class="fa-regular fa-circle-check text-green-200"></i>

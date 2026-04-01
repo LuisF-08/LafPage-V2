@@ -6,15 +6,11 @@
   <div class="w-full h-10"></div>
   <section class="pt-16 w-full px-[10px] py-20 md:py-24 ">
   <div class="flex flex-col items-center gap-10">
-    <h1 class="text-center text-10xl md:text-12xl lg:text-12xl
-    bg-gradient-to-r from-white via-indigo-500 to-sky-400
-    bg-clip-text text-transparent
-    tracking-wide
-    px-12 py-10
-    bg-white/20 backdrop-blur-xl
-    border border-white/30
-    rounded-3xl
-    shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+    <h1 class="text-center text-6xl md:text-8xl lg:text-9xl
+        bg-gradient-to-r from-white via-indigo-500 to-sky-400
+        bg-clip-text text-transparent
+        tracking-wide
+        px-8 py-10">
       <i class="fa-solid fa-people-group"></i>
       Nosso Time
     </h1>
